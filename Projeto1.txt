@@ -1,0 +1,166 @@
+// C++ code
+
+#define ex1
+
+#ifdef ex1
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(4000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(4000); // Wait for 1000 millisecond(s)
+  
+}
+#endif
+
+#ifdef ex2
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(2000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(4000); // Wait for 1000 millisecond(s)
+  
+}
+#endif
+
+#ifdef ex3
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(2000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(4000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(3000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(5000); // Wait for 1000 millisecond(s)
+}
+#endif
+
+#ifdef ex4
+
+//quando o led externo está conectado no pino 13 ele 
+//executa as instruções ao mesmo tempo do led interno
+
+//quando o led externo está conectado no pino 12 ele 
+//não executa as instruções, só ira excutar depois de definir em que pino o
+//led externo está conectado
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop()
+{
+ digitalWrite(LED_BUILTIN, HIGH);
+  delay(2000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(4000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(3000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(5000); // Wait for 1000 millisecond(s)
+}
+#endif
+
+#ifdef ex5
+#define LED_Ex 12
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_Ex, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_Ex, HIGH);
+  delay(1000);
+  digitalWrite(LED_Ex, LOW);
+  delay(1000);
+}
+#endif
+
+#ifdef ex6
+#define LED_Ex 12
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_Ex, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_Ex, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_Ex, LOW);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}
+#endif
+
+#ifdef ex7
+#define LED_Ex 12
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_Ex, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(2000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(2000);
+  digitalWrite(LED_Ex, HIGH);
+  delay(3000);
+  digitalWrite(LED_Ex, LOW);
+  delay(3000);
+  
+}
+#endif
+
+#ifdef ex8
+#define LED_Ex 12
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(LED_Ex, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+  digitalWrite(LED_Ex, HIGH);
+  delay(1000);
+  digitalWrite(LED_Ex, LOW);
+  delay(1000);
+  
+}
+#endif

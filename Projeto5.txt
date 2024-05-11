@@ -1,0 +1,394 @@
+#define ex1
+
+#ifdef exemplo
+//Sensor de luz 
+int ledPin = 13; //Led no pino 13 
+int ldrPin = 0; //LDR no pino analogico A0 
+int ldrValor = 0; //Valor lido do LDR 
+void setup() 
+{ 
+	pinMode(ledPin,OUTPUT); //define a porta 13 como saída 
+	Serial.begin(9600); //Inicia a comunicação serial 
+} 
+void loop() 
+{ 
+//ler o valor do LDR 
+	ldrValor = analogRead(ldrPin); //O valor lido sera’ entre 0 e 1023 
+//imprime o valor lido do LDR no monitor serial 
+	Serial.println(ldrValor); 
+//se o valor lido for maior que 500, liga o led 
+	if (ldrValor>= 500) 
+		digitalWrite(ledPin,HIGH); 
+// senão, apaga o led 
+	else 
+		digitalWrite(ledPin,LOW); 
+		delay(100); 
+} 
+#endif 
+
+#ifdef ex1
+int ledPin = 13;
+int buzzerPin = 12;
+int ldrPin = 0;  
+int ldrValor = 0;
+
+void setup() 
+{ 
+	pinMode(ledPin,OUTPUT);
+	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+void loop() 
+{ 
+	ldrValor = analogRead(ldrPin); 
+	Serial.println(ldrValor); 
+  
+  if (ldrValor>= 650)
+  { 
+		digitalWrite(ledPin,HIGH); 
+        tone(buzzerPin, 2000);
+  }
+	else 
+    {
+		digitalWrite(ledPin,LOW);
+        noTone(buzzerPin);
+    }
+  delay(100);
+}
+#endif
+
+#ifdef ex2
+int ledPinRed = 13;
+int ledPinYelow = 11;
+int ledPinGreen = 10;
+int buzzerPin = 12;
+int ldrPin = 0;  
+int ldrValor = 0;
+
+void setup() 
+{ 
+    pinMode(ledPinRed,OUTPUT);
+    pinMode(ledPinYelow,OUTPUT);
+    pinMode(ledPinGreen,OUTPUT);
+	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+void loop() 
+{ 
+	ldrValor = analogRead(ldrPin); 
+	Serial.println(ldrValor); 
+  
+   if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinRed,HIGH);
+    	digitalWrite(ledPinYelow,HIGH);
+     	digitalWrite(ledPinGreen,HIGH);
+        tone(buzzerPin, 2000);	
+    }
+	else if (ldrValor >= 800) 
+    {
+		digitalWrite(ledPinRed,HIGH);
+        digitalWrite(ledPinYelow,HIGH);
+        digitalWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (ldrValor >= 650)
+  { 
+		digitalWrite(ledPinRed,HIGH); 
+        digitalWrite(ledPinYelow,LOW);
+        digitalWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+  }
+  else  
+    {
+		digitalWrite(ledPinRed,LOW);
+        digitalWrite(ledPinYelow,LOW);
+        digitalWrite(ledPinGreen,LOW);
+        noTone(buzzerPin);
+    }
+  delay(100);
+}
+#endif
+#ifdef ex3
+int ledPinRed = 13;
+int ledPinYelow = 11;
+int ledPinGreen = 10;
+int buzzerPin = 12;
+int ldrPin = 0;  
+int ldrValor = 0;
+
+void setup() 
+{ 
+    pinMode(ledPinRed,OUTPUT);
+    pinMode(ledPinYelow,OUTPUT);
+    pinMode(ledPinGreen,OUTPUT);
+	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+
+int Luminosidade()
+{
+  int Valor=0;
+    
+  Valor = analogRead(ldrPin); 
+  
+  return Valor; 
+}
+  
+void loop() 
+{ 
+	ldrValor =  Luminosidade();
+	Serial.println(ldrValor); 
+  
+   if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinRed,HIGH);
+    	digitalWrite(ledPinYelow,HIGH);
+     	digitalWrite(ledPinGreen,HIGH);
+        tone(buzzerPin, 2000);	
+    }
+	else if (ldrValor >= 800) 
+    {
+		digitalWrite(ledPinRed,HIGH);
+        digitalWrite(ledPinYelow,HIGH);
+        digitalWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (ldrValor >= 650)
+  { 
+		digitalWrite(ledPinRed,HIGH); 
+        digitalWrite(ledPinYelow,LOW);
+        digitalWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+  }
+  else  
+    {
+		digitalWrite(ledPinRed,LOW);
+        digitalWrite(ledPinYelow,LOW);
+        digitalWrite(ledPinGreen,LOW);
+        noTone(buzzerPin);
+    }
+  delay(100);
+}
+#endif
+
+#ifdef ex4
+int ledPinRed = 13;
+int ledPinYelow = 11;
+int ledPinGreen = 10;
+int buzzerPin = 12;
+int ldrPin = 0;  
+
+
+void setup() 
+{ 
+    pinMode(ledPinRed,OUTPUT);
+    pinMode(ledPinYelow,OUTPUT);
+    pinMode(ledPinGreen,OUTPUT);
+	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+
+int Luminosidade()
+{
+  int Valor=0;
+    
+  Valor = analogRead(ldrPin); 
+  
+  return Valor; 
+  
+}
+
+void LedRed(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinRed,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+		digitalWrite(ledPinRed,HIGH);
+    }
+  else if (ldrValor >= 650)
+  { 
+		digitalWrite(ledPinRed,HIGH);
+  }
+  else  
+    {
+		digitalWrite(ledPinRed,LOW);
+    }
+}
+
+void LedYelow(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinYelow,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+        digitalWrite(ledPinYelow,HIGH);
+    }
+  else if (ldrValor >= 650)
+  { 
+        digitalWrite(ledPinYelow,LOW);
+  }
+  else  
+    {
+        digitalWrite(ledPinYelow,LOW);
+    }
+}
+
+void LedGreen(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+     	digitalWrite(ledPinGreen,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+        digitalWrite(ledPinGreen,LOW);
+    }
+  else if (ldrValor >= 650)
+  { 
+        digitalWrite(ledPinGreen,LOW);
+  }
+  else  
+    {
+        digitalWrite(ledPinGreen,LOW);
+    }
+}
+
+void loop() 
+{   
+  	int ldrValor = 0;
+ 
+	ldrValor =  Luminosidade();
+	Serial.println(ldrValor); 
+  
+   	LedRed(ldrValor);
+  	LedYelow(ldrValor);
+    LedGreen(ldrValor);
+  	delay(100);
+}
+#endif
+
+#ifdef ex5
+int ledPinRed = 13;
+int ledPinYelow = 11;
+int ledPinGreen = 10;
+int buzzerPin = 12;
+int ldrPin = 0;  
+int ldrValor = 0;
+
+void setup() 
+{ 
+    pinMode(ledPinRed,OUTPUT);
+    pinMode(ledPinYelow,OUTPUT);
+    pinMode(ledPinGreen,OUTPUT);
+	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+
+int Luminosidade()
+{
+  int ldrValor=0;
+    
+  ldrValor = analogRead(ldrPin); 
+  
+  return ldrValor; 
+  
+}
+
+void LedRed(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinRed,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+		digitalWrite(ledPinRed,HIGH);
+    }
+  else if (ldrValor >= 650)
+  { 
+		digitalWrite(ledPinRed,HIGH);
+  }
+  else  
+    {
+		digitalWrite(ledPinRed,LOW);
+    }
+}
+
+void LedYelow(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+    	digitalWrite(ledPinYelow,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+        digitalWrite(ledPinYelow,HIGH);
+    }
+  else if (ldrValor >= 650)
+  { 
+        digitalWrite(ledPinYelow,LOW);
+  }
+  else  
+    {
+        digitalWrite(ledPinYelow,LOW);
+    }
+}
+
+void LedGreen(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+     	digitalWrite(ledPinGreen,HIGH);
+    }
+	else if (ldrValor >= 800) 
+    {
+        digitalWrite(ledPinGreen,LOW);
+    }
+  else if (ldrValor >= 650)
+  { 
+        digitalWrite(ledPinGreen,LOW);
+  }
+  else  
+    {
+        digitalWrite(ledPinGreen,LOW);
+    }
+}
+
+void ControBuzzer(int ldrValor)
+{
+  if (ldrValor >= 950) 
+    {
+     	tone(buzzerPin, 2000);
+    }
+	else if (ldrValor >= 800) 
+    {
+        noTone(buzzerPin);
+    }
+  else if (ldrValor >= 650)
+  { 
+        noTone(buzzerPin);
+  }
+  else  
+    {
+        noTone(buzzerPin);
+    }
+}
+void loop() 
+{   int ldrValor = 0;
+ 
+	ldrValor =  Luminosidade();
+	Serial.println(ldrValor); 
+  
+   	LedRed(ldrValor);
+  	LedYelow(ldrValor);
+    LedGreen(ldrValor);
+  	ControBuzzer(ldrValor);
+  	delay(100);
+}
+#endif

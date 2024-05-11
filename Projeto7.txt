@@ -1,0 +1,741 @@
+#define ex1
+
+#ifdef exemplo
+
+// Daremos um nome ao pino que está conectado o LED 
+int ledPin = 11; 
+int pwmPin = A0; 
+unsigned int valorLido; 
+unsigned int pwm;
+
+//Função "setup" roda uma vez quando a placa e ligada ou resetada 
+void setup() 
+{ 	
+  	pinMode(ledPin, OUTPUT); 
+	Serial.begin(9600); 
+} 
+// Função que se repete infinitamente quando a placa é ligada 
+void loop() 
+{ 
+  	valorLido = analogRead(pwmPin); // valor entre 0 e 1023 
+	//mostra o valor lido na porta analógica 
+	Serial.println(valorLido); 
+	pwm = map(valorLido, 0, 1023, 0, 255); // Mudança de escala 
+	//Escreve no led um sinal PWM proporcional ao valor Lido 
+	analogWrite(ledPin,pwm); 
+}
+#endif
+
+#ifdef ex1
+
+int ledPinRed = 11;
+int ledPinYelow=10; 
+int pwmPin = A0; 
+unsigned int valorLido; 
+unsigned int pwm;
+
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+  	valorLido = analogRead(pwmPin);  
+	
+	Serial.println(valorLido); 
+	pwm = map(valorLido, 0, 1023, 0, 255); 
+
+	analogWrite(ledPinRed,pwm);
+    analogWrite(ledPinYelow,pwm); 
+}
+#endif
+
+#ifdef ex2
+
+int ledPinRed = 11;
+int ledPinYelow=10; 
+int pwmPin = A0; 
+unsigned int valorLido; 
+unsigned int pwm;
+int menos=0;
+
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+  	valorLido = analogRead(pwmPin);  
+	
+	pwm = map(valorLido, 0, 1023, 0, 255); 
+	Serial.println(pwm);
+  	menos=255-pwm;
+  
+	analogWrite(ledPinRed,pwm);
+    analogWrite(ledPinYelow,menos); 
+}
+#endif
+
+#ifdef ex3
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0; 
+unsigned int valorLido; 
+unsigned int pwm;
+
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+  	valorLido = analogRead(pwmPin);  
+	
+	
+	pwm = map(valorLido, 0, 1023, 0, 255); 
+  	Serial.println(pwm);
+  
+	 if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    	analogWrite(ledPinYelow,pwm);
+     	analogWrite(ledPinGreen,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+        analogWrite(ledPinYelow,pwm);
+        analogWrite(ledPinGreen,LOW);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+    }
+  	
+}
+#endif
+
+#ifdef ex4
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0; 
+unsigned int valorLido; 
+unsigned int pwm;
+int buzzerPin = 8;
+
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+  	valorLido = analogRead(pwmPin);  
+	
+	
+	pwm = map(valorLido, 0, 1023, 0, 255); 
+  	Serial.println(pwm);
+  
+	 if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    	analogWrite(ledPinYelow,pwm);
+     	analogWrite(ledPinGreen,pwm);
+       	tone(buzzerPin, 2000);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+        analogWrite(ledPinYelow,pwm);
+        analogWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+   	 	noTone(buzzerPin);
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+    }
+  	
+}
+#endif
+
+#ifdef ex5
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0;
+
+int buzzerPin = 8;
+
+int ValorPoten()
+{
+   unsigned int valorLido;
+   unsigned int valorRetorno;
+  
+    valorLido = analogRead(pwmPin);  
+	valorRetorno = map(valorLido, 0, 1023, 0, 255); 
+  
+  return valorRetorno;
+}
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{  unsigned int pwm;
+ 
+	pwm = ValorPoten(); 
+  	Serial.println(pwm);
+  
+	 if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    	analogWrite(ledPinYelow,pwm);
+     	analogWrite(ledPinGreen,pwm);
+       	tone(buzzerPin, 2000);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+        analogWrite(ledPinYelow,pwm);
+        analogWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+   	 	noTone(buzzerPin);
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+    }
+  	
+}
+#endif
+
+#ifdef ex6
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0;  
+
+int buzzerPin = 8;
+
+int ValorPoten()
+{
+   unsigned int valorLido;
+   unsigned int valorRetorno;
+  
+    valorLido = analogRead(pwmPin);  
+	valorRetorno = MudarEscala(valorLido);
+  
+  return valorRetorno;
+}
+int MudarEscala(int valorLido)
+{
+  unsigned int valor;
+  
+  valor = map(valorLido, 0, 1023, 0, 255);
+  
+  return valor;
+}
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+  	unsigned int pwm;
+  
+	pwm = ValorPoten(); 
+  	Serial.println(pwm);
+  
+	 if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    	analogWrite(ledPinYelow,pwm);
+     	analogWrite(ledPinGreen,pwm);
+       	tone(buzzerPin, 2000);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+        analogWrite(ledPinYelow,pwm);
+        analogWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+   	 	noTone(buzzerPin);
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+        analogWrite(ledPinYelow,LOW);
+        analogWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+    }
+  	
+}
+#endif
+
+#ifdef ex7
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0;
+int buzzerPin = 8;
+
+int ValorPoten()
+{
+   unsigned int valorLido;
+   unsigned int valorRetorno;
+  
+    valorLido = analogRead(pwmPin);  
+	valorRetorno = MudarEscala(valorLido);
+  
+  return valorRetorno;
+}
+int MudarEscala(int valorLido)
+{
+  unsigned int valor;
+  
+  valor = map(valorLido, 0, 1023, 0, 255);
+  
+  return valor;
+}
+
+void ControleRed(int pwm) 
+{ 	
+  	if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+    }
+}
+
+void ControleYelow(int pwm) 
+{ 	
+    if (pwm >= 175) 
+    {
+    	analogWrite(ledPinYelow,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+        analogWrite(ledPinYelow,pwm);
+    }
+  else if (pwm >= 75)
+  { 
+        analogWrite(ledPinYelow,LOW);
+  }
+  else  
+    {
+        analogWrite(ledPinYelow,LOW);
+    } 	
+}
+
+void ControleGreen(int pwm) 
+{ 	
+ if (pwm >= 175) 
+    {
+     	analogWrite(ledPinGreen,pwm);
+   		tone(buzzerPin, 2000);
+    }
+	else if (pwm >= 110) 
+    {
+        analogWrite(ledPinGreen,LOW);
+      	noTone(buzzerPin);
+    }
+  else if (pwm >= 75)
+  { 
+        analogWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+  }
+  else  
+    {
+        analogWrite(ledPinGreen,LOW);
+    	noTone(buzzerPin);
+    }
+}
+
+
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+    
+	unsigned int pwm;
+  
+	pwm = ValorPoten(); 
+  	Serial.println(pwm);
+  
+  	ControleRed(pwm);
+  	ControleYelow(pwm);
+   	ControleGreen(pwm);
+	
+}
+#endif
+
+#ifdef ex8
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0;
+int buzzerPin = 8;
+
+int ValorPoten()
+{
+   unsigned int valorLido;
+   unsigned int valorRetorno;
+  
+    valorLido = analogRead(pwmPin);  
+	valorRetorno = MudarEscala(valorLido);
+  
+  return valorRetorno;
+}
+int MudarEscala(int valorLido)
+{
+  unsigned int valor;
+  
+  valor = map(valorLido, 0, 1023, 0, 255);
+  
+  return valor;
+}
+
+void ControleRed(int pwm) 
+{ 	
+  	if (pwm >= 175) 
+    {
+    	analogWrite(ledPinRed,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+		analogWrite(ledPinRed,pwm);
+    }
+  else if (pwm >= 75)
+  { 
+		analogWrite(ledPinRed,pwm); 
+  }
+  else  
+    {
+		analogWrite(ledPinRed,LOW);
+    }
+}
+
+void ControleYelow(int pwm) 
+{ 	
+    if (pwm >= 175) 
+    {
+    	analogWrite(ledPinYelow,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+        analogWrite(ledPinYelow,pwm);
+    }
+  else if (pwm >= 75)
+  { 
+        analogWrite(ledPinYelow,LOW);
+  }
+  else  
+    {
+        analogWrite(ledPinYelow,LOW);
+    } 	
+}
+
+void ControleGreen(int pwm) 
+{ 	
+ if (pwm >= 175) 
+    {
+     	analogWrite(ledPinGreen,pwm);
+    }
+	else if (pwm >= 110) 
+    {
+        analogWrite(ledPinGreen,LOW);
+    }
+  else if (pwm >= 75)
+  { 
+        analogWrite(ledPinGreen,LOW);
+  }
+  else  
+    {
+        analogWrite(ledPinGreen,LOW);
+    }
+}
+
+void ControleBuzzer(int pwm)
+{
+  if (pwm >= 175) 
+    {
+       	tone(buzzerPin, 2000);
+    }
+  else  
+    {
+    	noTone(buzzerPin);
+    }
+}
+
+void setup() 
+{ 	
+  	pinMode(ledPinRed, OUTPUT); 
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600); 
+} 
+ 
+void loop() 
+{ 
+    
+	unsigned int pwm;
+  
+	pwm = ValorPoten(); 
+  	Serial.println(pwm);
+  
+  	ControleRed(pwm);
+  	ControleYelow(pwm);
+   	ControleGreen(pwm);
+  	ControleBuzzer(pwm);
+	
+}
+#endif
+
+#ifdef ex9
+
+int ledPinRed = 11;
+int ledPinYelow=10;
+int ledPinGreen=9;
+int pwmPin = A0;
+int buzzerPin = 8;
+
+int ValorPoten()
+{
+   unsigned int valorLido;
+   unsigned int valorRetorno;
+
+    valorLido = analogRead(pwmPin);
+	valorRetorno = MudarEscala(valorLido);
+
+  return valorRetorno;
+}
+int MudarEscala(int valorLido)
+{
+  unsigned int valor;
+
+  valor = map(valorLido, 0, 1023, 0, 255);
+
+  return valor;
+}
+
+void ControleRed(int pwm)
+{
+  	if (pwm >= 175)
+    {
+    	EscritaLedRed(pwm);
+    }
+	else if (pwm >= 110)
+    {
+		EscritaLedRed(pwm);
+    }
+  else if (pwm >= 75)
+  {
+		EscritaLedRed(pwm);
+  }
+  else
+    {
+		EscritaLedRed(pwm);
+    }
+}
+
+void ControleYelow(int pwm)
+{
+    if (pwm >= 175)
+    {
+    	EscritaLedYelow(pwm);
+    }
+	else if (pwm >= 110)
+    {
+        EscritaLedYelow(pwm);
+    }
+  else if (pwm >= 75)
+  {
+        EscritaLedYelow(pwm);
+  }
+  else
+    {
+        EscritaLedYelow(pwm);
+    }
+}
+
+void ControleGreen(int pwm)
+{
+ if (pwm >= 175)
+    {
+     	EscritaLedGreen(pwm);
+    }
+	else if (pwm >= 110)
+    {
+        EscritaLedGreen(pwm);
+    }
+  else if (pwm >= 75)
+  {
+        EscritaLedGreen(pwm);
+  }
+  else
+    {
+        EscritaLedGreen(pwm);
+    }
+}
+
+void ControleBuzzer(int pwm)
+{
+  if (pwm >= 175)
+    {
+       	tone(buzzerPin, 2000);
+    }
+  else
+    {
+    	noTone(buzzerPin);
+    }
+}
+
+void EscritaLedRed(int pwm)
+{
+    if(pwm>0)
+    {
+        analogWrite(ledPinRed,pwm);
+    }
+    else
+    {
+        analogWrite(ledPinRed,LOW);
+    }
+}
+
+void EscritaLedYelow(int pwm)
+{
+    if (pwm >= 110)
+    {
+        analogWrite(ledPinYelow,pwm);
+    }
+  else
+  {
+        analogWrite(ledPinYelow,LOW);
+  }
+}
+
+void EscritaLedGreen(int pwm)
+{
+   if (pwm >= 175)
+    {
+     	analogWrite(ledPinGreen,pwm);
+    }
+	else
+    {
+        analogWrite(ledPinGreen,LOW);
+    }
+}
+void setup()
+{
+  	pinMode(ledPinRed, OUTPUT);
+    pinMode(ledPinYelow, OUTPUT);
+  	pinMode(ledPinGreen, OUTPUT);
+  	pinMode(buzzerPin, OUTPUT);
+	Serial.begin(9600);
+}
+
+void loop()
+{
+    
+	unsigned int pwm;
+  
+	pwm = ValorPoten();
+  	Serial.println(pwm);
+
+  	ControleRed(pwm);
+  	ControleYelow(pwm);
+   	ControleGreen(pwm);
+  	ControleBuzzer(pwm);
+
+}
+#endif
